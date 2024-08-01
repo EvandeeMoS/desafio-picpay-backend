@@ -18,8 +18,12 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private BigDecimal value;
+    private BigDecimal amount;
+    @ManyToOne
+    @JoinColumn(name = "payer_id")
     private User payer;
+    @ManyToOne
+    @JoinColumn(name = "payee_id")
     private User payee;
     private LocalDateTime timestamp;
 }
