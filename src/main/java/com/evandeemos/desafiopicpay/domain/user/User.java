@@ -1,5 +1,6 @@
 package com.evandeemos.desafiopicpay.domain.user;
 
+import com.evandeemos.desafiopicpay.domain.user.dto.UserCreationDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,15 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserType type;
+
+    public User(UserCreationDto data) {
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.document = data.document();
+        this.email = data.email();
+        this.password = data.password();
+        this.type = data.userType();
+    }
 
     public String getFullName() {
         return firstName + " " + lastName;
