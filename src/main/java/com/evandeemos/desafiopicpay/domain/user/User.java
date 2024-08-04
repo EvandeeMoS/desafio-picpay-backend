@@ -1,6 +1,7 @@
 package com.evandeemos.desafiopicpay.domain.user;
 
 import com.evandeemos.desafiopicpay.domain.user.dto.UserCreationDto;
+import com.evandeemos.desafiopicpay.domain.wallet.Wallet;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,9 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserType type;
+    @OneToOne
+    @JoinColumn(name = "wallet_id")
+    private Wallet wallet;
 
     public User(UserCreationDto data) {
         this.firstName = data.firstName();
